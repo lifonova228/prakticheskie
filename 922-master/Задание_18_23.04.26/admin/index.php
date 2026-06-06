@@ -1,3 +1,4 @@
+<<<<<<< HEAD:922-master/Задание_18_23.04.26/admin/index.php
 	<?php
 $head = '
     <meta charset="utf-8">
@@ -46,29 +47,38 @@ $footer = '
         </div>
     </div>
 ';
+=======
+<?php 
+    include dirname(__DIR__) . "/data/teams-data.php"; 
+>>>>>>> 4450632ffe419877895f378b40802e8d6a7439e6:Задание_18_23.04.26/teams/index.php
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <?php echo $head; ?>
+    <?php include dirname(__DIR__) . "/inc/head-other.php"; ?>
 </head>
 <body>
     <header>
         <div class="content ins">
-            <?php echo $header; ?>
+            <?php include dirname(__DIR__) . "/inc/header-other.php"; ?>
         </div>
     </header>
 
     <div class="main ins">
+<<<<<<< HEAD:922-master/Задание_18_23.04.26/admin/index.php
         <div class="content ins">
             <?php echo $content; ?>
         </div>
+=======
+        <?php 
+            include dirname(__DIR__) . "/inc/content-teams.php";
+        ?> 
+>>>>>>> 4450632ffe419877895f378b40802e8d6a7439e6:Задание_18_23.04.26/teams/index.php
     </div>
 
     <footer>
         <div class="content">
-            <?php echo $footer; ?>
+            <?php include dirname(__DIR__) . "/inc/footer.php"; ?>
         </div>
     </footer>
 </body>
