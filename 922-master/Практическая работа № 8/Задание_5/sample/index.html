@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Программирование на языке PHP</title>
+</head>	
+<body>
+
+	<h1>Отправка данных на сервер</h1>
+	<h2>Отправка форм</h2>
+	<hr>
+	<h2>Укажите критерии поиска</h2>
+	<form action="server.php" method="post">
+		Представьтесь: <input type="text" name="name"><p>
+		
+		Бренд: </br>
+		Acer   <input type="radio" name="brand" value="Acer">
+		ASUS   <input type="radio" name="brand" value="ASUS">
+		Lenovo <input type="radio" name="brand" value="Lenovo">
+		Dell   <input type="radio" name="brand" value="Dell"><p>
+
+		Операционная система: </br>
+		Windows <input type="radio" name="os" value="Windows">
+		macOS   <input type="radio" name="os" value="macOS">
+		Linux   <input type="radio" name="os" value="Linux">
+		Без ОС  <input type="radio" name="os" value="без ОС"><p>		
+		
+		Объем твердотельных накопителей (SSD): </br>
+		120  <input type="radio" name="ssd" value="120">
+		256  <input type="radio" name="ssd" value="256">			
+		512  <input type="radio" name="ssd" value="512">
+		1024 <input type="radio" name="ssd" value="1024"><p>
+		
+		<input type="submit">
+	</form>
+
+
+</body>
+</html>

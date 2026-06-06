@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Программирование на языке PHP</title>
+</head>
+<body>
+	<h1>Отправка данных на сервер</h1>
+	<h2>Загрузка файлов</h2>
+
+	<form method="POST" action="server.php" enctype="multipart/form-data">
+		Выберите файлы для загрузки: <p> 
+		<input type="file" name="myfile[]"><p>
+		<input type="file" name="myfile[]"><p>
+		<input type="file" name="myfile[]"><p>
+		<input type="submit" name="loader" value="Загрузить файлы">
+	</form>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Программирование на языке PHP</title>
+</head>
+<body>
+
+	<h1>Отправка данных на сервер</h1>
+	<h2>Загрузка файлов</h2>
+
+	<form action="server.php" method="post" enctype="multipart/form-data">
+		Фамилия: <input type="text" name="surname"><p>
+		Имя: <input type="text" name="name"><p>
+		Отчество: <input type="text" name="patronymic"><p>
+		Должность: <input type="text" name="post"><p>
+		Категория: <input type="text" name="category"><p>
+		Стаж в техникуме: <input type="number" step="0.1" name="experience_college"><p>	
+		Выбор изображения: <input type="file" name="image"><p>
+
+		<input type="submit" name="loader">
+	</form>
+
+
+</body>
+</html>
