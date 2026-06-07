@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>Программирование на языке PHP</title>
+    <meta charset="UTF-8">
+    <title>Программирование на языке PHP</title>
 </head>
 <body>
 
-	<h1>Отправка данных на сервер</h1>
-	<h2>Загрузка файлов</h2>
-	<hr>
-	<h2>Скрипт-обработчик формы</h2>
+    <h1>Отправка данных на сервер</h1>
+    <h2>Загрузка файлов</h2>
+    <hr>
+    <h2>Скрипт-обработчик формы</h2>
 
-	<?php
-		// проверим, что скрипт выполняется как обработчик формы
-		if (isset ($_POST["loader"])) {
-			
-			// проверим загрузку на наличие ошибок
-			if ($_FILES['myfile']["error"] == UPLOAD_ERR_OK) {
+    <?php
+    // проверим, что скрипт выполняется как обработчик формы
+    if (isset($_POST["loader"])) {
 
-				// генерируем уникальное имя файла
-				$filename = md5(uniqid());
-				
-				// получаем расширение файла
-				$ext = pathinfo($_FILES["myfile"]["name"], PATHINFO_EXTENSION);
+        // проверим загрузку на наличие ошибок
+        if ($_FILES['myfile']["error"] == UPLOAD_ERR_OK) {
 
-				// текущая временная директория
-				$current_path = $_FILES["myfile"]["tmp_name"];
-				
-				// директория постоянного хранения
-				$new_path = __DIR__ . '/upload/' . $filename . "." . $ext;
+            // генерируем уникальное имя файла
+            $filename = md5(uniqid());
 
-				// перемещаем файл
-				if (move_uploaded_file($current_path, $new_path)) {
-					// выводим сообщение об успешной загрузке файла изображения
-					echo "<h3>Файл успешно загружен на сервер</h3>";
+            // получаем расширение файла
+            $ext = pathinfo($_FILES["myfile"]["name"], PATHINFO_EXTENSION);
 
-				} else {
-					// если во время перемещения возникла ошибка
-					echo "<h3>К сожалению, при сохранении файла что то пошло не так...</h3>";
-				};      
+            // текущая временная директория
+            $current_path = $_FILES["myfile"]["tmp_name"];
 
-			} else {
-			   // если при загрузке произошла ошибка, выводим информацию о ней
-				switch ($_FILES['myfile']['error']) {
-			        case UPLOAD_ERR_INI_SIZE:
-			            echo "<h3>Размер принятого файла превысил максимально допустимый размер, который задан директивой upload_max_filesize конфигурационного файла php.ini (код ошибки: 1)</h3>";
-						break;
-			        case UPLOAD_ERR_PARTIAL:
-			            echo "<h3>Загружаемый файл был получен только частично (код ошибки: 3)</h3>";
-						break;
-			        case UPLOAD_ERR_NO_FILE:
-			        	echo "<h3>Файл не был загружен (код ошибки: 4)</h3>";
-			        	break;
-			        default: 
-			        	echo "<h3>Файл по какой-то причине не загружен... :((</h3>";
-				}
-			}			
-		} else {
+            // директория постоянного хранения (папка "upload" должна существовать)
+            $new_path = __DIR__ . '/upload/' . $filename . "." . $ext;
 
-			echo "<h3>Заполните, пожалуйста, форму</h3>";
-		
-		};
-	?>
+            // создаем директорию upload, если её нет
+            if (!is_dir(__DIR__ . '/upload/')) {
+                mkdir(__DIR__ . '/upload/', 0777, true);
+            }
+
+            // перемещаем файл
+            if (move_uploaded_file($current_path, $new_path)) {
+                echo "<h3>Файл успешно загружен на сервер</h3>";
+            } else {
+                echo "<h3>К сожалению, при сохранении файла что-то пошло не так...</h3>";
+            }
+
+        } else {
+            // если при загрузке произошла ошибка, выводим информацию о ней
+            switch ($_FILES['myfile']['error']) {
+                case UPLOAD_ERR_INI_SIZE:
+                    echo "<h3>Размер принятого файла превысил максимально допустимый размер, который задан директивой upload_max_filesize в php.ini</h3>";
+                    break;
+                case UPLOAD_ERR_FORM_SIZE:
+                    echo "<h3>Размер загружаемого файла превысил максимально допустимый размер, указанный в HTML-форме (MAX_FILE_SIZE)</h3>";
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+                    echo "<h3>Загружаемый файл был получен только частично (код ошибки: 3)</h3>";
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    echo "<h3>Файл не был загружен (код ошибки: 4)</h3>";
+                    break;
+                default:
+                    echo "<h3>Файл по какой-то причине не загружен... :((</h3>";
+            }
+        }
+
+    } else {
+        echo "<h3>Заполните, пожалуйста, форму</h3>";
+    }
+    ?>
 
 </body>
 </html>
