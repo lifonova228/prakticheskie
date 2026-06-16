@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Программирование на языке PHP</title>
+</head>
+<body>
+	
+	<h1>Отправка данных на сервер</h1>
+	<h2>Безопасность данных, часть 2</h2>
+	<hr>
+	<h2>Загрузка файлов</h2>
+
+	<form action="server.php" enctype="multipart/form-data" method="post">
+		Логин: <input type="text" name="login" value="master2001"><p>
+		<!-- Поле MAX_FILE_SIZE определяет максимальный размер загружаемого файла -->
+   		 <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+		Загрузите ваш аватар: <input type="file" name="myfile"><p>
+		<input type="submit" name="load" value="Загрузить файл">
+	</form>
+
+
+</body>
+</html>
